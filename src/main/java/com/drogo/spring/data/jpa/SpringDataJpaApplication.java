@@ -2,6 +2,7 @@ package com.drogo.spring.data.jpa;
 
 import com.drogo.spring.data.jpa.entity.Author;
 import com.drogo.spring.data.jpa.repository.AuthorRepository;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,7 @@ public class SpringDataJpaApplication {
         SpringApplication.run(SpringDataJpaApplication.class, args);
     }
 
-    @Bean
+    //@Bean
     public CommandLineRunner commandLineRunner(AuthorRepository authorRepository) {
         return args -> {
             var author = Author.builder()
@@ -28,5 +29,4 @@ public class SpringDataJpaApplication {
         };
     }
 
-    
 }

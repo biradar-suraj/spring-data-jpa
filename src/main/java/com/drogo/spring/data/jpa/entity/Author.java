@@ -1,32 +1,29 @@
 package com.drogo.spring.data.jpa.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 /*@Table(
         name = "AUTHOR_TBL"
 )*/
-public class Author {
+public class Author extends BaseEntity {
     /*  It's recommended to use wrappers over primitives
      *  The default value for `int` is  0, while for `Integer`, it is `null` */
-    @Id
+    /*@Id
     @GeneratedValue(
-            /* strategy = GenerationType.TABLE,
-             generator = "author_id_gen"*/
-    )
+            strategy = GenerationType.TABLE,
+             generator = "author_id_gen"
+    )*/
     /*@SequenceGenerator(
             name = "author_sequence",
             sequenceName = "author_sequence",
@@ -36,7 +33,7 @@ public class Author {
             pkColumnName = "id_name",
             valueColumnName = "id_value",
             allocationSize = 1)*/
-    private Integer id;
+   /* private Integer id;*/
 
     @Column(
             name = "f_name",
@@ -64,6 +61,11 @@ public class Author {
             insertable = false
     )
     private LocalDateTime lastModified;*/
+
+    @ManyToMany(
+            mappedBy = "authors"
+    )
+    private List<Course> courses;
 
 
 }
