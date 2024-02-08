@@ -1,20 +1,30 @@
 package com.drogo.spring.data.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-public class Resource extends BaseEntity {
+@Inheritance(
+       /* strategy = InheritanceType.SINGLE_TABLE*/
+        /*strategy = InheritanceType.JOINED*/
+        strategy = InheritanceType.TABLE_PER_CLASS
+)
+/*@DiscriminatorColumn(
+        name = "resource_type"
+)*/
+public class Resource {
 
-    /*@Id
+    @Id
     @GeneratedValue
-    private Integer id;*/
+    private Integer id;
 
     private String name;
 

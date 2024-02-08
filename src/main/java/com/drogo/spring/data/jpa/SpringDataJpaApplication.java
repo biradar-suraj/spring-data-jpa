@@ -1,7 +1,9 @@
 package com.drogo.spring.data.jpa;
 
 import com.drogo.spring.data.jpa.entity.Author;
+import com.drogo.spring.data.jpa.entity.Video;
 import com.drogo.spring.data.jpa.repository.AuthorRepository;
+import com.drogo.spring.data.jpa.repository.VideoRepository;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,15 +18,23 @@ public class SpringDataJpaApplication {
     }
 
     //@Bean
-    public CommandLineRunner commandLineRunner(AuthorRepository authorRepository) {
+    public CommandLineRunner commandLineRunner(
+            AuthorRepository authorRepository, VideoRepository videoRepository
+    ) {
         return args -> {
-            var author = Author.builder()
+            /*var author = Author.builder()
                     .firstName("Suraj")
                     .lastName("Biradar")
                     .age(30)
                     .email("suraj.biradar@email.com")
                     .build();
-            authorRepository.save(author);
+            authorRepository.save(author);*/
+            
+            var video= Video.builder()
+                    .name("Complexity")
+                    .length(10)
+                    .build();
+            Video savedVideo = videoRepository.save(video);
 
         };
     }
