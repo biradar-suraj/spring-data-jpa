@@ -13,6 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
+@NamedQuery(
+        name="Author.findAllAgeByNamedQuery",
+        query="select a from Author a where a.age>= :age"
+)
 /*@Table(
         name = "AUTHOR_TBL"
 )*/
@@ -63,7 +67,8 @@ public class Author extends BaseEntity {
     private LocalDateTime lastModified;*/
 
     @ManyToMany(
-            mappedBy = "authors"
+            mappedBy = "authors",
+            fetch = FetchType.EAGER
     )
     private List<Course> courses;
 
